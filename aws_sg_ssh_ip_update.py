@@ -25,10 +25,14 @@ def updateSecurityGroup(SG_ID,NEW_IP):
 
    # Get the Security Group information
    ec2 = boto3.resource('ec2')
-   sg = ec2.SecurityGroup(SG_ID)
-   for ipp in sg.ip_permissions:
-      if 22 == ipp['FromPort']:
-         ipR = ipp['IpRanges']
+   try:
+      sg = ec2.SecurityGroup(SG_ID)
+      for ipp in sg.ip_permissions:
+         if 22 == ipp['FromPort']:
+            ipR = ipp['IpRanges']
+   except:
+      print("ERROR: Problem getting information about Security Group with ID: "+SG_ID)
+      return
 
    # Check that an existing SSH (22) rule was found
    try:
@@ -86,11 +90,9 @@ My_IP = ip_request.text
 My_IP=''.join([My_IP.rstrip(),"/32"])
 
 
-SG_ID_Default_VPC='sg-38058e50'
-SG_ID_Tuig_VPC='sg-0a9d3cd5337b69a45'
+SG_ID_Default_VPC='sg-98058e50'
 
 updateSecurityGroup(SG_ID_Default_VPC,My_IP)
-updateSecurityGroup(SG_ID_Tuig_VPC,My_IP)
 
 #                                  Done
 # =============================================================================
