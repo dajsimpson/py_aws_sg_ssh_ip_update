@@ -90,9 +90,8 @@ My_IP = ip_request.text
 My_IP=''.join([My_IP.rstrip(),"/32"])
 
 
-SG_ID_Default_VPC='sg-98058e50'
-
-updateSecurityGroup(SG_ID_Default_VPC,My_IP)
+updateSecurityGroup('sg-38058e50',My_IP)
+updateSecurityGroup('sg-0a9d3cd5337b69a45',My_IP)
 
 #                                  Done
 # =============================================================================
