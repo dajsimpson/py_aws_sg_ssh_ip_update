@@ -2,4 +2,5 @@
 Python script to update AWS Security Group if the home IP changes
 
 Depends on:
-Python packages: sh, json
+Python packages: datetime, requests, boto3
+
